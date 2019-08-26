@@ -13,21 +13,21 @@ func index(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r.Form)  // 这些信息是输出到服务器端的打印信息
     fmt.Println("path", r.URL.Path)
     fmt.Println("scheme", r.URL.Scheme)
-	fmt.Println(r.Form["url_long"])
+    fmt.Println(r.Form["url_long"])
 
-	// fmt.Printf("%v",r.Form)
+    // fmt.Printf("%v",r.Form)
     for k, v := range r.Form {
         fmt.Println("key:", k)
         fmt.Println("val:", strings.Join(v, ""))
     }
-	fmt.Fprintf(w, "Hello astaxie!") // 这个写入到 w 的是输出到客户端的
+    fmt.Fprintf(w, "Hello astaxie!") // 这个写入到 w 的是输出到客户端的
 
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
     fmt.Println("method:", r.Method) // 获取请求的方法
     if r.Method == "GET" {
-        t, _ := template.ParseFiles("login.gtpl")
+        t, _ := template.ParseFiles("public/views/index.html")
         log.Println(t.Execute(w, nil))
     } else {
         err := r.ParseForm()   // 解析 url 传递的参数，对于 POST 则解析响应包的主体（request body）
@@ -45,10 +45,15 @@ func login(w http.ResponseWriter, r *http.Request) {
 func main() {
     http.HandleFunc("/", index) // 设置访问的路由
     http.HandleFunc("/login", login)
+
+    // 靜態資聊加載
+    http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("public"))))
+
+
     err := http.ListenAndServe(":8080", nil) // 设置监听的端口
     if err != nil {
         log.Fatal("ListenAndServe: ", err)
     } else {
 
-	}
+    }
 }

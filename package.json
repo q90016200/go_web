@@ -1,0 +1,35 @@
+{
+  "name": "go_web",
+  "version": "1.0.0",
+  "description": "go_web js package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node_modules/.bin/webpack --mode development --watch",
+    "build": "node_modules/.bin/webpack --mode development",
+    "deploy": "node_modules/.bin/webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/q90016200/go_web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/q90016200/go_web/issues"
+  },
+  "homepage": "https://github.com/q90016200/go_web#readme",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.2"
+  },
+  "keywords": []
+}
