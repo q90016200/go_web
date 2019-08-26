@@ -5,6 +5,11 @@ module.exports = {
     entry: {
         index: './assets/js/index.js'
     },
+    module: {
+        rules: [
+            { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
+        ]
+    },
     output: {
         //這裡是打包後的檔案名稱
         filename: 'index.js',
